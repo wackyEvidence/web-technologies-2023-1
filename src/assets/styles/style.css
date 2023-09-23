@@ -2,10 +2,103 @@
 @import "./fonts.css";
 @import "./utils.css";
 
-.test {
-    color: yellow !important;
+.main_header
+{
+    font-size: 64px;
+    color: #1F3F68;
 }
 
-.test {
-    color: red !important;
+.normal_paragraph
+{
+    font-size: 16px;
+    line-height: 26px;
+    color: #1F3F68;
 }
+
+.h2_header
+{
+    font-weight: 500;
+    font-size: 44px;
+    text-align: center;
+}
+
+.h3_header
+{
+    font-size: 36px;
+    text-align: center; 
+}
+
+.h4_header
+{
+    font-size: 20px;
+    line-height: 30px;
+    color: #1F3F68;
+}
+
+.form_input
+{
+    border: 1px solid #356EAD;
+    box-sizing: border-box;
+    border-radius: 10px;
+    opacity: 0.4;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+form
+{
+    background-image: url("D:\\Учеба\\Web технологии в ИС\\Practice\\formbackground.jpg");
+    background-repeat: no-repeat; 
+}
+
+.form_label
+{
+    font-size: 16px;
+    line-height: 26px;
+    color: #ffffff;
+    /* 8C55E9 */
+}
+
+.submit_button
+{
+    background: linear-gradient(0.25turn, #4A74E6, #8C55E9);
+    box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+    color: #FFFFFF;
+    text-transform: uppercase;    
+}
+
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+  }
+  
+  /* Отображение элементов списка бок о бок */
+  ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+  }
+  
+  /* Добавить символ косой черты (/) перед/за каждым элементом списка */
+  ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+  }
+  
+  /* Добавить цвет для всех ссылок внутри списка */
+  ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+  }
+  
+  /* Добавить цвет на наведении курсора мыши */
+  ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+  }
