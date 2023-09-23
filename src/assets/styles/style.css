@@ -73,7 +73,7 @@ form
 
 .breadcrumbs {
     background: rgb(255, 255, 255);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(0, 221, 255, 1) 39%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgb(46, 195, 106) 39%);
     padding: 5px;
     color: black;
     display: flex;
