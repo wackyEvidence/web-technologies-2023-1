@@ -56,7 +56,6 @@ form
     font-size: 16px;
     line-height: 26px;
     color: #ffffff;
-    /* 8C55E9 */
 }
 
 .submit_button
@@ -72,33 +71,28 @@ form
     text-transform: uppercase;    
 }
 
-ul.breadcrumb {
-    padding: 10px 16px;
-    list-style: none;
-    background-color: #eee;
-  }
-  
-  /* Отображение элементов списка бок о бок */
-  ul.breadcrumb li {
-    display: inline;
-    font-size: 18px;
-  }
-  
-  /* Добавить символ косой черты (/) перед/за каждым элементом списка */
-  ul.breadcrumb li+li:before {
-    padding: 8px;
+.breadcrumbs {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(0, 221, 255, 1) 39%);
+    padding: 5px;
     color: black;
-    content: "/\00a0";
-  }
-  
-  /* Добавить цвет для всех ссылок внутри списка */
-  ul.breadcrumb li a {
-    color: #0275d8;
+    display: flex;
+    gap: 10px;
+}
+
+.breadcrumbs div {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid white;
+    box-shadow: 2px 0 0 0 black;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;
+}
+
+.breadcrumbs div a {
     text-decoration: none;
-  }
+    color: black;
+}
   
-  /* Добавить цвет на наведении курсора мыши */
-  ul.breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
-  }
+
