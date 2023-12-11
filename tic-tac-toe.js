@@ -1,38 +1,39 @@
-import {TicTacToe} from "./components/TicTacToe.js";
+import { TicTacToe } from "./components/TicTacToe.js";
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init)
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
 } else {
-    init()
+    init();
 }
 
-function init() {    
-    const moveEl = document.getElementById('move-value')
-    
+function init() {
+    // Элемент, отображающий X или О
+    const moveEl = document.getElementById("move-value");
+    // Функция, изменяющая значения X -> O или наоборот
     const onMove = (isXTurn) => {
-        let currentMove
-        
+        let currentMove;
+
         if (isXTurn) {
-            currentMove = 'X'
+            currentMove = "X";
         } else {
-            currentMove = 'O'
+            currentMove = "O";
         }
+        moveEl.innerText = currentMove;
+    };
 
-        moveEl.innerText = currentMove
-    }
+    // Создание игры
+    const game = TicTacToe.init({
+        // el - div с игровым полем
+        el: document.getElementById("tic-tac-toe"),
+        onMove,
+    });
 
-    const game = TicTacToe.init(
-        {
-            el: document.getElementById('tic-tac-toe'),
-            onMove,
-        }
-    )
-    
-    game.startGame()
-    
-    const restartBtn = document.getElementById('restart-btn')
+    // Начало игры
+    game.startGame();
 
-    restartBtn.addEventListener('click', () => {
-        game.restartGame()
-    })
+    // Обработка нажатия на кнопку 'Рестарт'
+    const restartBtn = document.getElementById("restart-btn");
+    restartBtn.addEventListener("click", () => {
+        game.restartGame();
+    });
 }
