@@ -203,13 +203,9 @@ export const TicTacToe = {
      */
     setBlockValue(target, clear) {
         const [row, col] = this.getBlockPosition(target);
-
-        if (clear) {
-            this.matrix[row - 1][col - 1] = null;
-            return;
-        }
-
-        this.matrix[row - 1][col - 1] = this.getCurrentTurnValue();
+        this.matrix[row - 1][col - 1] = clear
+            ? null
+            : this.getCurrentTurnValue();
     },
 
     // Дописать
@@ -221,12 +217,7 @@ export const TicTacToe = {
      * @param {boolean?} clear - если true - отчистить target
      */
     setBlockDom(target, clear) {
-        if (clear) {
-            target.innerHTML = "";
-            return;
-        }
-
-        target.innerHTML = this.getCurrentTurnValue();
+        target.innerHTML = clear ? "" : this.getCurrentTurnValue();
     },
 
     // Дописать
