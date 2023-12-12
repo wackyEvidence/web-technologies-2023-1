@@ -10,3 +10,9 @@
 .test {
     color: red !important;
 }
+
+.user-score{
+    text-align: center;
+    color: white;
+    margin-top: 2rem;
+}

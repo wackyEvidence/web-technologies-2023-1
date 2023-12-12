@@ -8,10 +8,10 @@
  * @property {int} winLength Длина змейки для победы.
  */
 const settings = {
-  rowsCount: 21,
-  colsCount: 21,
-  speed: 4,
-  winFoodCount: 5,
+    rowsCount: 21,
+    colsCount: 21,
+    speed: 4,
+    winFoodCount: 10,
 };
 
 /**
@@ -19,90 +19,90 @@ const settings = {
  * @property {settings} settings Настройки игры.
  */
 const config = {
-  settings,
+    settings,
 
-  /**
-   * Инициализация настроек игры.
-   * @param {Object} userSettings Объект с пользовательскими настройками игры.
-   */
-  init(userSettings) {
-    // Записываем переданные настройки в те, которые будут использоваться.
-    Object.assign(this.settings, userSettings);
-  },
-
-  /**
-   * @returns {int} Отдает количество строк в игре.
-   */
-  getRowsCount() {
-    return this.settings.rowsCount;
-  },
-
-  /**
-   * @returns {int} Отдает количество колонок в игре.
-   */
-  getColsCount() {
-    return this.settings.colsCount;
-  },
-
-  /**
-   * @returns {int} Отдает скорость змейки в игре.
-   */
-  getSpeed() {
-    return this.settings.speed;
-  },
-
-  /**
-   * @returns {int} Отдает количество еды, которое надо съесть для победы.
-   */
-  getWinFoodCount() {
-    return this.settings.winFoodCount;
-  },
-
-  /**
-   * Проверка значений настроек игры.
-   * @returns {{isValid: boolean, errors: Array}} Результат валидации в виде объекта с ошибками.
-   */
-  validate() {
     /**
-     * Объект DTO с результатами валидации.
-     * @property {boolean} isValid true, если настройки валидны, иначе false.
-     * @property {string[]} errors массив со всеми ошибками настроек.
+     * Инициализация настроек игры.
+     * @param {Object} userSettings Объект с пользовательскими настройками игры.
      */
-    const result = {
-      isValid: true,
-      errors: [],
-    };
+    init(userSettings) {
+        // Записываем переданные настройки в те, которые будут использоваться.
+        Object.assign(this.settings, userSettings);
+    },
 
-    if (this.settings.rowsCount < 10 || this.settings.rowsCount > 30) {
-      result.isValid = false;
-      result.errors.push(
-        "Неверные настройки, значение rowsCount должно быть в диапазоне [10, 30]."
-      );
-    }
+    /**
+     * @returns {int} Отдает количество строк в игре.
+     */
+    getRowsCount() {
+        return this.settings.rowsCount;
+    },
 
-    if (this.settings.colsCount < 10 || this.settings.colsCount > 30) {
-      result.isValid = false;
-      result.errors.push(
-        "Неверные настройки, значение colsCount должно быть в диапазоне [10, 30]."
-      );
-    }
+    /**
+     * @returns {int} Отдает количество колонок в игре.
+     */
+    getColsCount() {
+        return this.settings.colsCount;
+    },
 
-    if (this.settings.speed < 1 || this.settings.speed > 10) {
-      result.isValid = false;
-      result.errors.push(
-        "Неверные настройки, значение speed должно быть в диапазоне [1, 10]."
-      );
-    }
+    /**
+     * @returns {int} Отдает скорость змейки в игре.
+     */
+    getSpeed() {
+        return this.settings.speed;
+    },
 
-    if (this.settings.winFoodCount < 5 || this.settings.winFoodCount > 50) {
-      result.isValid = false;
-      result.errors.push(
-        "Неверные настройки, значение winLength должно быть в диапазоне [5, 50]."
-      );
-    }
+    /**
+     * @returns {int} Отдает количество еды, которое надо съесть для победы.
+     */
+    getWinFoodCount() {
+        return this.settings.winFoodCount;
+    },
 
-    return result;
-  },
+    /**
+     * Проверка значений настроек игры.
+     * @returns {{isValid: boolean, errors: Array}} Результат валидации в виде объекта с ошибками.
+     */
+    validate() {
+        /**
+         * Объект DTO с результатами валидации.
+         * @property {boolean} isValid true, если настройки валидны, иначе false.
+         * @property {string[]} errors массив со всеми ошибками настроек.
+         */
+        const result = {
+            isValid: true,
+            errors: [],
+        };
+
+        if (this.settings.rowsCount < 10 || this.settings.rowsCount > 30) {
+            result.isValid = false;
+            result.errors.push(
+                "Неверные настройки, значение rowsCount должно быть в диапазоне [10, 30]."
+            );
+        }
+
+        if (this.settings.colsCount < 10 || this.settings.colsCount > 30) {
+            result.isValid = false;
+            result.errors.push(
+                "Неверные настройки, значение colsCount должно быть в диапазоне [10, 30]."
+            );
+        }
+
+        if (this.settings.speed < 1 || this.settings.speed > 10) {
+            result.isValid = false;
+            result.errors.push(
+                "Неверные настройки, значение speed должно быть в диапазоне [1, 10]."
+            );
+        }
+
+        if (this.settings.winFoodCount < 5 || this.settings.winFoodCount > 50) {
+            result.isValid = false;
+            result.errors.push(
+                "Неверные настройки, значение winLength должно быть в диапазоне [5, 50]."
+            );
+        }
+
+        return result;
+    },
 };
 
 /**
@@ -111,76 +111,75 @@ const config = {
  * @property {Array} usedCells Массив содержащий все занятые ячейки игры.
  */
 const map = {
-  cells: null,
-  usedCells: null,
+    cells: null,
+    usedCells: null,
 
-  /**
-   * Метод инициализирует и выводит карту для игры.
-   * @param {int} rowsCount Количество строк в карте.
-   * @param {int} colsCount Количество колонок в карте.
-   */
-  init(rowsCount, colsCount) {
-    // Контейнер, где будут наши ячейки, первоначально его очистим.
-    const table = document.getElementById("game");
-    table.innerHTML = "";
-    // Объект-хранилище всех клеток пока пустой.
-    this.cells = {};
-    // Массив со всеми занятыми элементами на карте пока тоже пустой.
-    this.usedCells = [];
-    // Цикл запустится столько раз, сколько у нас количество строк.
-    for (let row = 0; row < rowsCount; row++) {
-      // Создаем строку, добавляем ей класс, после добавляем ее в таблицу.
-      const tr = document.createElement("tr");
-      tr.classList.add("row");
-      table.appendChild(tr);
-      // Цикл запустится столько раз, сколько у нас количество колонок.
-      for (let col = 0; col < colsCount; col++) {
-        // Создаем ячейку, добавляем ячейке класс cell.
-        const td = document.createElement("td");
-        td.classList.add("cell");
-        // Записываем в объект всех ячеек новую ячейку.
-        this.cells[`x${col.toString()}_y${row.toString()}`] = td;
-        // Добавляем ячейку в строку.
-        tr.appendChild(td);
-      }
-    }
-  },
+    /**
+     * Метод инициализирует и выводит карту для игры.
+     * @param {int} rowsCount Количество строк в карте.
+     * @param {int} colsCount Количество колонок в карте.
+     */
+    init(rowsCount, colsCount) {
+        // Контейнер, где будут наши ячейки, первоначально его очистим.
+        const table = document.getElementById("game");
+        table.innerHTML = "";
+        // Объект-хранилище всех клеток пока пустой.
+        this.cells = {};
+        // Массив со всеми занятыми элементами на карте пока тоже пустой.
+        this.usedCells = [];
+        // Цикл запустится столько раз, сколько у нас количество строк.
+        for (let row = 0; row < rowsCount; row++) {
+            // Создаем строку, добавляем ей класс, после добавляем ее в таблицу.
+            const tr = document.createElement("tr");
+            tr.classList.add("row");
+            table.appendChild(tr);
+            // Цикл запустится столько раз, сколько у нас количество колонок.
+            for (let col = 0; col < colsCount; col++) {
+                // Создаем ячейку, добавляем ячейке класс cell.
+                const td = document.createElement("td");
+                td.classList.add("cell");
+                // Записываем в объект всех ячеек новую ячейку.
+                this.cells[`x${col.toString()}_y${row.toString()}`] = td;
+                // Добавляем ячейку в строку.
+                tr.appendChild(td);
+            }
+        }
+    },
 
-  /**
-   * Отображает все объекты на карте.
-   * @param {{x: int, y: int}[]} snakePointsArray Массив с точками змейки.
-   * @param {{x: int, y: int}} foodPoint Точка еды.
-   * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach|Array.prototype.forEach()}
-   */
-  render(snakePointsArray, foodPoint) {
-    // Чистим карту от предыдущего рендера, всем занятым ячейкам оставляем только класс cell.
-    for (const cell of this.usedCells) {
-      //console.log(cell);
-      cell.className = "cell";
-    }
-    // Очищаем массив с занятыми ячейками, при отображении сейчас его соберем заново.
-    //this.usedCells = [];
-    // Отображаем змейку.
-    console.log(snakePointsArray);
-    snakePointsArray.forEach((point, idx) => {
-      // Получаем элемент ячейки змейки по точке point.
-      const snakeCell = this.cells[`x${point.x}_y${point.y}`];
-      // Если первый элемент массива, значит это голова, иначе тело.
-      //console.log(snakeCell);
-      snakeCell.classList.add(idx === 0 ? "snakeHead" : "snakeBody");
-      // Добавляем элемент ячейки змейки в массив занятых точек на карте.
-      this.usedCells.push(snakeCell);
-    });
-    // Получаем элемент ячейки с едой по точке foodPoint.
-    const foodCell = this.cells[`x${foodPoint.x}_y${foodPoint.y}`];
-    // Отображаем еду.
-    foodCell.classList.add("food");
-    // Добавляем элемент ячейки еды в массив занятых точек на карте.
-    this.usedCells.push(foodCell);
-    //console.log(this.usedCells);
-    //Отрисовываем счетчик игрока
-    document.querySelector("#schet").innerHTML = snake.bodyLenght;
-  },
+    /**
+     * Отображает все объекты на карте.
+     * @param {{x: int, y: int}[]} snakePointsArray Массив с точками змейки.
+     * @param {{x: int, y: int}} foodPoint Точка еды.
+     * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach|Array.prototype.forEach()}
+     */
+    render(snakePointsArray, foodPoint) {
+        // Чистим карту от предыдущего рендера, всем занятым ячейкам оставляем только класс cell.
+        for (const cell of this.usedCells) {
+            //console.log(cell);
+            cell.className = "cell";
+        }
+        // Очищаем массив с занятыми ячейками, при отображении сейчас его соберем заново.
+        this.usedCells = []; // было закомментировано
+        // Отображаем змейку.
+        snakePointsArray.forEach((point, idx) => {
+            // Получаем элемент ячейки змейки по точке point.
+            const snakeCell = this.cells[`x${point.x}_y${point.y}`];
+            // Если первый элемент массива, значит это голова, иначе тело.
+            //console.log(snakeCell);
+            snakeCell.classList.add(idx === 0 ? "snakeHead" : "snakeBody");
+            // Добавляем элемент ячейки змейки в массив занятых точек на карте.
+            this.usedCells.push(snakeCell);
+        });
+        // Получаем элемент ячейки с едой по точке foodPoint.
+        const foodCell = this.cells[`x${foodPoint.x}_y${foodPoint.y}`];
+        // Отображаем еду.
+        foodCell.classList.add("food");
+        // Добавляем элемент ячейки еды в массив занятых точек на карте.
+        this.usedCells.push(foodCell);
+        //console.log(this.usedCells);
+        //Отрисовываем счетчик игрока
+        document.querySelector(".js-user-score").innerHTML = snake.bodyLength; // добавлено от себя
+    },
 };
 
 /**
@@ -190,111 +189,125 @@ const map = {
  * @property {string} lastStepDirection Направление, куда сходила змейка прошлый раз.
  */
 const snake = {
-  body: null,
-  direction: null,
-  lastStepDirection: null,
-  bodyLenght: 0,
+    body: null,
+    direction: null,
+    lastStepDirection: null,
+    bodyLength: 0,
 
-  /**
-   * Инициализирует змейку, откуда она будет начинать и ее направление.
-   * @param {{x: int, y: int}[]} startBody Начальная позиция змейки.
-   * @param {string} direction Начальное направление игрока.
-   */
-  init(startBody, direction) {
-    this.body = startBody;
-    this.direction = direction;
-    this.lastStepDirection = direction;
-  },
+    /**
+     * Инициализирует змейку, откуда она будет начинать и ее направление.
+     * @param {{x: int, y: int}[]} startBody Начальная позиция змейки.
+     * @param {string} direction Начальное направление игрока.
+     */
+    init(startBody, direction) {
+        this.body = startBody;
+        this.direction = direction;
+        this.lastStepDirection = direction;
+    },
 
-  /**
-   * Отдает массив со всеми точками змейки.
-   * @return {{x: int, y: int}[]};
-   */
-  getBody() {
-    return this.body;
-  },
-  setBodyLength() {
-    this.bodyLenght = this.getBody().length - 1;
-    console.log(this.bodyLenght);
-  },
-  /**
-   * Отдает прошлое направление змейки.
-   */
-  getLastStepDirection() {
-    return this.lastStepDirection;
-  },
+    /**
+     * Отдает массив со всеми точками змейки.
+     * @return {{x: int, y: int}[]};
+     */
 
-  /**
-   * Проверяет содержит ли змейка переданную точку.
-   * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/some|Array.prototype.some()}
-   * @param {{x: int, y: int}} point Точка, которую проверяем.
-   * @returns {boolean} true, если змейка содержит переданную точку, иначе false.
-   */
-  isOnPoint(point) {
-    return this.body.some(
-      (snakePoint) => snakePoint.x === point.x && snakePoint.y === point.y
-    );
-  },
+    getBody() {
+        return this.body;
+    },
 
-  /**
-   * Двигает змейку на один шаг.
-   */
-  makeStep() {},
+    setBodyLength() {
+        this.bodyLength = this.getBody().length - 1;
+        console.log(this.bodyLength);
+    },
+    /**
+     * Отдает прошлое направление змейки.
+     */
+    getLastStepDirection() {
+        return this.lastStepDirection;
+    },
 
-  /**
-   * Добавляет в конец тела змейки копию последнего элемента змейки.
-   */
-  growUp() {
-    // Получаем индекс последней точки в массиве точек змейки (последний элемент this.body).
-    const lastBodyIdx = this.body.length - 1;
-    // Получаем последнюю точку змейки.
-    const lastBodyPoint = this.body[lastBodyIdx];
-    // Клонируем последнюю точку змейки (делаем копию).
-    const lastBodyPointClone = Object.assign({}, lastBodyPoint);
-    // Добавляем копию в наш массив this.body.
-    this.body.push(lastBodyPointClone);
-  },
+    /**
+     * Проверяет содержит ли змейка переданную точку.
+     * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/some|Array.prototype.some()}
+     * @param {{x: int, y: int}} point Точка, которую проверяем.
+     * @returns {boolean} true, если змейка содержит переданную точку, иначе false.
+     */
+    isOnPoint(point) {
+        return this.body.some(
+            (snakePoint) => snakePoint.x === point.x && snakePoint.y === point.y
+        );
+    },
 
-  /**
-   * Отдает точку, где будет голова змейки если она сделает шаг.
-   * @returns {{x: int, y: int}} Следующая точка куда придет змейка сделав шаг.
-   */
-  getNextStepHeadPoint() {
-    // Получаем в отдельную переменную голову змейки.
-    const firstPoint = this.body[0];
-    //console.log(firstPoint);
-    // Возвращаем точку, где окажется голова змейки в зависимости от направления.
-    switch (this.direction) {
-      case "up":
-        if (firstPoint.y <= 0) {
-          return { x: firstPoint.x, y: config.getRowsCount() - 1 };
+    /**
+     * Двигает змейку на один шаг.
+     */
+    makeStep() {
+        const newHeadPoint = this.getNextStepHeadPoint();
+        let previousCoordinates = [this.body[0].x, this.body[0].y];
+        this.body[0].x = newHeadPoint.x;
+        this.body[0].y = newHeadPoint.y;
+
+        for(let i = 1; i < this.body.length; i++) {
+            const temp = [this.body[i].x, this.body[i].y];
+            this.body[i].x = previousCoordinates[0]; 
+            this.body[i].y = previousCoordinates[1]; 
+            previousCoordinates = [temp[0], temp[1]]; 
         }
-        return { x: firstPoint.x, y: firstPoint.y - 1 };
-      case "right":
-        if (firstPoint.x >= config.getColsCount() - 1) {
-          return { x: 0, y: firstPoint.y };
-        }
-        return { x: firstPoint.x + 1, y: firstPoint.y };
-      case "down":
-        if (firstPoint.y >= config.getRowsCount() - 1) {
-          return { x: firstPoint.x, y: 0 };
-        }
-        return { x: firstPoint.x, y: firstPoint.y + 1 };
-      case "left":
-        if (firstPoint.x <= 0) {
-          return { x: config.getColsCount() - 1, y: firstPoint.y };
-        }
-        return { x: firstPoint.x - 1, y: firstPoint.y };
-    }
-  },
+    },
 
-  /**
-   * Устанавливает направление змейки.
-   * @param {string} direction Направление змейки.
-   */
-  setDirection(direction) {
-    this.direction = direction;
-  },
+    /**
+     * Добавляет в конец тела змейки копию последнего элемента змейки.
+     */
+    growUp() {
+        // Получаем индекс последней точки в массиве точек змейки (последний элемент this.body).
+        const lastBodyIdx = this.body.length - 1;
+        // Получаем последнюю точку змейки.
+        const lastBodyPoint = this.body[lastBodyIdx];
+        // Клонируем последнюю точку змейки (делаем копию).
+        const lastBodyPointClone = Object.assign({}, lastBodyPoint);
+        // Добавляем копию в наш массив this.body.
+        this.body.push(lastBodyPointClone);
+    },
+
+    /**
+     * Отдает точку, где будет голова змейки если она сделает шаг.
+     * @returns {{x: int, y: int}} Следующая точка куда придет змейка сделав шаг.
+     */
+    getNextStepHeadPoint() {
+        // Получаем в отдельную переменную голову змейки.
+        const firstPoint = this.body[0];
+        //console.log(firstPoint);
+        // Возвращаем точку, где окажется голова змейки в зависимости от направления.
+        switch (this.direction) {
+            case "up":
+                if (firstPoint.y <= 0) {
+                    return { x: firstPoint.x, y: config.getRowsCount() - 1 };
+                }
+                return { x: firstPoint.x, y: firstPoint.y - 1 };
+            case "right":
+                if (firstPoint.x >= config.getColsCount() - 1) {
+                    return { x: 0, y: firstPoint.y };
+                }
+                return { x: firstPoint.x + 1, y: firstPoint.y };
+            case "down":
+                if (firstPoint.y >= config.getRowsCount() - 1) {
+                    return { x: firstPoint.x, y: 0 };
+                }
+                return { x: firstPoint.x, y: firstPoint.y + 1 };
+            case "left":
+                if (firstPoint.x <= 0) {
+                    return { x: config.getColsCount() - 1, y: firstPoint.y };
+                }
+                return { x: firstPoint.x - 1, y: firstPoint.y };
+        }
+    },
+
+    /**
+     * Устанавливает направление змейки.
+     * @param {string} direction Направление змейки.
+     */
+    setDirection(direction) {
+        this.direction = direction;
+    },
 };
 
 /**
@@ -303,35 +316,37 @@ const snake = {
  * @property {int} y Координата Y еды.
  */
 const food = {
-  x: null,
-  y: null,
+    x: null,
+    y: null,
 
-  /**
-   * Отдает координаты еды.
-   * @returns {{x: int, y: int}} Координаты еды.
-   */
-  getCoordinates() {
-    return {
-      x: this.x,
-      y: this.y,
-    };
-  },
+    /**
+     * Отдает координаты еды.
+     * @returns {{x: int, y: int}} Координаты еды.
+     */
+    getCoordinates() {
+        return {
+            x: this.x,
+            y: this.y,
+        };
+    },
 
-  /**
-   * Устанавливает координаты для еды.
-   * @param {{x: int, y: int}} point Новая точка с координатами еды.
-   */
-  setCoordinates(point) {
-    this.x = point.x;
-    this.y = point.y;
-  },
+    /**
+     * Устанавливает координаты для еды.
+     * @param {{x: int, y: int}} point Новая точка с координатами еды.
+     */
+    setCoordinates(point) {
+        this.x = point.x;
+        this.y = point.y;
+    },
 
-  /**
-   * Определяет соответствует ли точка на которой находится еда той точке что была передана.
-   * @param {{x: int, y: int}} point Точка, для проверки соответствия точке еды.
-   * @returns {boolean} true, если точки совпали, иначе false.
-   */
-  isOnPoint(point) {},
+    /**
+     * Определяет соответствует ли точка на которой находится еда той точке что была передана.
+     * @param {{x: int, y: int}} point Точка, для проверки соответствия точке еды.
+     * @returns {boolean} true, если точки совпали, иначе false.
+     */
+    isOnPoint(point) {
+        return point.x == this.x && point.y == this.y;
+    },
 };
 
 /**
@@ -339,44 +354,44 @@ const food = {
  * @property {string} condition Статус игры.
  */
 const status = {
-  condition: null,
+    condition: null,
 
-  /**
-   * Устанавливает статус в "playing".
-   */
-  setPlaying() {
-    this.condition = "playing";
-  },
+    /**
+     * Устанавливает статус в "playing".
+     */
+    setPlaying() {
+        this.condition = "playing";
+    },
 
-  /**
-   * Устанавливает статус в "stopped".
-   */
-  setStopped() {
-    this.condition = "stopped";
-  },
+    /**
+     * Устанавливает статус в "stopped".
+     */
+    setStopped() {
+        this.condition = "stopped";
+    },
 
-  /**
-   * Устанавливает статус в "finished".
-   */
-  setFinished() {
-    this.condition = "finished";
-  },
+    /**
+     * Устанавливает статус в "finished".
+     */
+    setFinished() {
+        this.condition = "finished";
+    },
 
-  /**
-   * Проверяет является ли статус "playing".
-   * @returns {boolean} true, если статус "playing", иначе false.
-   */
-  isPlaying() {
-    return this.condition === "playing";
-  },
+    /**
+     * Проверяет является ли статус "playing".
+     * @returns {boolean} true, если статус "playing", иначе false.
+     */
+    isPlaying() {
+        return this.condition === "playing";
+    },
 
-  /**
-   * Проверяет является ли статус "stopped".
-   * @returns {boolean} true, если статус "stopped", иначе false.
-   */
-  isStopped() {
-    return this.condition === "stopped";
-  },
+    /**
+     * Проверяет является ли статус "stopped".
+     * @returns {boolean} true, если статус "stopped", иначе false.
+     */
+    isStopped() {
+        return this.condition === "stopped";
+    },
 };
 
 /**
@@ -389,256 +404,306 @@ const status = {
  * @property {int} tickInterval Номер интервала игры.
  */
 const game = {
-  config,
-  map,
-  snake,
-  food,
-  status,
-  tickInterval: null,
+    config,
+    map,
+    snake,
+    food,
+    status,
+    tickInterval: null,
 
-  /**
-   * Инициализация игры.
-   * @param {object} userSettings Настройки игры, которые можно изменить.
-   */
-  init(userSettings) {
-    // Инициализируем настройки игры.
-    this.config.init(userSettings);
-    // Получаем результат валидации настроек.
-    const validation = this.config.validate();
-    // Если настройки игры неверные - сообщаем об ошибках и выходим из метода, игру не запускаем.
-    if (!validation.isValid) {
-      for (const err of validation.errors) {
-        console.error(err);
-      }
-      return;
-    }
-    // Инициализируем карту.
-    this.map.init(this.config.getRowsCount(), this.config.getColsCount());
-    // Устанавливаем обработчики событий.
-    this.setEventHandlers();
-    // Ставим игру в начальное положение.
-    this.reset();
-  },
+    /**
+     * Инициализация игры.
+     * @param {object} userSettings Настройки игры, которые можно изменить.
+     */
+    init(userSettings) {
+        // Инициализируем настройки игры.
+        this.config.init(userSettings);
+        // Получаем результат валидации настроек.
+        const validation = this.config.validate();
+        // Если настройки игры неверные - сообщаем об ошибках и выходим из метода, игру не запускаем.
+        if (!validation.isValid) {
+            for (const err of validation.errors) {
+                console.error(err);
+            }
+            return;
+        }
+        // Инициализируем карту.
+        this.map.init(this.config.getRowsCount(), this.config.getColsCount());
+        // Устанавливаем обработчики событий.
+        this.setEventHandlers();
+        // Ставим игру в начальное положение.
+        this.reset();
+    },
 
-  /**
-   * Ставит игру в начальное положение.
-   */
-  reset() {
-    // Ставим статус игры в "остановлена".
-    this.stop();
-    // Инициализируем змейку.
-    this.snake.init(this.getStartSnakeBody(), "up");
-    // Ставим еду на карту в случайную пустую ячейку.
-    this.food.setCoordinates(this.getRandomFreeCoordinates());
-    // Отображаем все что нужно для игры.
-    this.render();
-  },
+    /**
+     * Ставит игру в начальное положение.
+     */
+    reset() {
+        // Ставим статус игры в "остановлена".
+        this.stop();
+        // Инициализируем змейку.
+        this.snake.init(this.getStartSnakeBody(), "up");
+        this.snake.bodyLength = 0;
+        // Ставим еду на карту в случайную пустую ячейку.
+        this.food.setCoordinates(this.getRandomFreeCoordinates());
+        // Отображаем все что нужно для игры.
+        this.render();
+        // Сбрасываем счетчик очков 
+        document.querySelector(".js-user-score").innerHTML = '0';
+    },
 
-  /**
-   * Ставим статус игры в "играем".
-   */
-  play() {
-    // Ставим статус в 'playing'.
-    this.status.setPlaying();
-    // Ставим интервал шагов змейки.
-    console.log(this.config.settings.speed);
-    this.tickInterval = setInterval(
-      () => this.tickHandler(),
-      1000 / this.config.getSpeed()
-    );
-    // Меняем название кнопки в меню на "Стоп" и делаем ее активной.
-    this.setPlayButton("Стоп");
-  },
+    /**
+     * Ставим статус игры в "играем".
+     */
+    play() {
+        // Ставим статус в 'playing'.
+        this.status.setPlaying();
+        // Ставим интервал шагов змейки.
+        this.tickInterval = setInterval(
+            () => this.tickHandler(),
+            1000 / this.config.getSpeed()
+        );
+        // Меняем название кнопки в меню на "Стоп" и делаем ее активной.
+        this.setPlayButton("Стоп");
+    },
 
-  /**
-   * Ставим статус игры в "стоп".
-   */
-  stop() {
-    // Ставим статус в 'stopped'.
-    this.status.setStopped();
-    // Убираем интервал шагов змейки.
-    clearInterval(this.tickInterval);
-    // Меняем название кнопки в меню на "Старт" и делаем ее активной.
-    this.setPlayButton("Старт");
-  },
+    /**
+     * Ставим статус игры в "стоп".
+     */
+    stop() {
+        // Ставим статус в 'stopped'.
+        this.status.setStopped();
+        // Убираем интервал шагов змейки.
+        clearInterval(this.tickInterval);
+        // Меняем название кнопки в меню на "Старт" и делаем ее активной.
+        this.setPlayButton("Старт");
+    },
 
-  /**
-   * Ставим статус игры в "финиш".
-   */
-  finish() {
-    // Ставим статус в 'finished'.
-    this.status.setFinished();
-    // Убираем интервал шагов змейки.
-    clearInterval(this.tickInterval);
-    // Меняем название кнопки в меню на "Игра закончена" и делаем ее неактивной.
-    this.setPlayButton("Игра закончена", true);
-  },
+    /**
+     * Ставим статус игры в "финиш".
+     */
+    finish() {
+        // Ставим статус в 'finished'.
+        this.status.setFinished();
+        // Убираем интервал шагов змейки.
+        clearInterval(this.tickInterval);
+        // Меняем название кнопки в меню на "Игра закончена" и делаем ее неактивной.
+        this.setPlayButton("Игра закончена", true);
+        document.querySelector(".js-user-score").innerHTML = '0';
+    },
 
-  /**
-   * Обработчик события тика игры, когда змейка должна перемещаться.
-   */
-  tickHandler() {
-    // Если следующий шаг невозможен, то ставим игру в статус завершенный.
-    if (!this.canMakeStep()) {
-      return this.finish();
-    }
-    // Если следующий шаг будет на еду, то заходим в if.
-    if (this.food.isOnPoint(this.snake.getNextStepHeadPoint())) {
-      // Прибавляем к змейке ячейку.
-      this.snake.growUp();
-      //увеличиваем счетчик игры
-      this.snake.setBodyLength();
-      // Ставим еду в свободную ячейку.
-      this.food.setCoordinates(this.getRandomFreeCoordinates());
-      // Если выиграли, завершаем игру.
-      if (this.isGameWon()) {
-        this.finish();
-      }
-    }
-    // Перемещаем змейку.
-    this.snake.makeStep();
-    // Отрисовываем что получилось после шага.
-    this.render();
-  },
+    /**
+     * Обработчик события тика игры, когда змейка должна перемещаться.
+     */
+    tickHandler() {
+        // Если следующий шаг невозможен, то ставим игру в статус завершенный.
+        if (!this.canMakeStep()) {
+            //console.log("can't make step!");
+            return this.finish();
+        }
+        // Если следующий шаг будет на еду, то заходим в if.
+        if (this.food.isOnPoint(this.snake.getNextStepHeadPoint())) {
+            // Прибавляем к змейке ячейку.
+            this.snake.growUp();
+            //увеличиваем счетчик игры
+            this.snake.setBodyLength();
+            // Ставим еду в свободную ячейку.
+            this.food.setCoordinates(this.getRandomFreeCoordinates());
+            // Если выиграли, завершаем игру.
+            if (this.isGameWon()) {
+                this.finish();
+            }
+        }
+        // Перемещаем змейку.
+        this.snake.makeStep();
+        // Отрисовываем что получилось после шага.
+        this.render();
+    },
 
-  /**
-   * Меняем кнопку с классом playButton.
-   * @param {string} textContent Текст кнопки.
-   * @param {boolean} [isDisabled = false] Необходимо ли заблокировать кнопку.
-   */
-  setPlayButton(textContent, isDisabled = false) {
-    // Находим кнопку.
-    const playButton = document.getElementById("playButton");
-    // Меняем текст внутри кнопки на переданный.
-    playButton.textContent = textContent;
-    // Если необходимо запретить нажатие кнопку - ставим класс disabled, иначе убираем класс disabled.
-    isDisabled
-      ? playButton.classList.add("disabled")
-      : playButton.classList.remove("disabled");
-  },
+    /**
+     * Меняем кнопку с классом playButton.
+     * @param {string} textContent Текст кнопки.
+     * @param {boolean} [isDisabled = false] Необходимо ли заблокировать кнопку.
+     */
+    setPlayButton(textContent, isDisabled = false) {
+        // Находим кнопку.
+        const playButton = document.getElementById("playButton");
+        // Меняем текст внутри кнопки на переданный.
+        playButton.textContent = textContent;
+        // Если необходимо запретить нажатие кнопку - ставим класс disabled, иначе убираем класс disabled.
+        isDisabled
+            ? playButton.classList.add("disabled")
+            : playButton.classList.remove("disabled");
+    },
 
-  /**
-   * Возвращает начальную позицию змейки в центре карты.
-   * @returns {{x: int, y: int}[]} Точка начальной позиции змейки.
-   */
-  getStartSnakeBody() {
-    return [
-      {
-        x: Math.floor(this.config.getColsCount() / 2),
-        y: Math.floor(this.config.getRowsCount() / 2),
-      },
-    ];
-  },
+    /**
+     * Возвращает начальную позицию змейки в центре карты.
+     * @returns {{x: int, y: int}[]} Точка начальной позиции змейки.
+     */
+    getStartSnakeBody() {
+        return [
+            {
+                x: Math.floor(this.config.getColsCount() / 2),
+                y: Math.floor(this.config.getRowsCount() / 2),
+            },
+        ];
+    },
 
-  /**
-   * Ставит обработчики события.
-   */
-  setEventHandlers() {
-    // При клике на кнопку с классом playButton вызвать функцию this.playClickHandler.
-    document
-      .getElementById("playButton")
-      .addEventListener("click", () => this.playClickHandler());
-    // При клике на кнопку с классом newGameButton вызвать функцию this.newGameClickHandler.
-    document
-      .getElementById("newGameButton")
-      .addEventListener("click", (event) => this.newGameClickHandler(event));
-    // При нажатии кнопки, если статус игры "играем", то вызываем функцию смены направления у змейки.
-    document.addEventListener("keydown", (event) => this.keyDownHandler(event));
-  },
+    /**
+     * Ставит обработчики события.
+     */
+    setEventHandlers() {
+        // При клике на кнопку с классом playButton вызвать функцию this.playClickHandler.
+        document
+            .getElementById("playButton")
+            .addEventListener("click", () => this.playClickHandler());
+        // При клике на кнопку с классом newGameButton вызвать функцию this.newGameClickHandler.
+        document
+            .getElementById("newGameButton")
+            .addEventListener("click", (event) =>
+                this.newGameClickHandler(event)
+            );
+        // При нажатии кнопки, если статус игры "играем", то вызываем функцию смены направления у змейки.
+        document.addEventListener("keydown", (event) =>
+            this.keyDownHandler(event)
+        );
+    },
 
-  /**
-   * Отображает все для игры, карту, еду и змейку.
-   */
-  render() {
-    this.map.render(this.snake.getBody(), this.food.getCoordinates());
-  },
+    /**
+     * Отображает все для игры, карту, еду и змейку.
+     */
+    render() {
+        this.map.render(this.snake.getBody(), this.food.getCoordinates());
+    },
 
-  /**
-   * Отдает случайную не занятую точку на карте.
-   * @return {{x: int, y: int}} Точку с координатами.
-   */
-  getRandomFreeCoordinates() {},
+    /**
+     * Отдает случайную не занятую точку на карте.
+     * @return {{x: int, y: int}} Точку с координатами.
+     */
+    getRandomFreeCoordinates() {
+        while (true) {
+            const cells = this.map.cells;
 
-  /**
-   * Обработчик события нажатия на кнопку playButton.
-   */
-  playClickHandler() {
-    // Если сейчас статус игры "играем", то игру останавливаем, если игра остановлена, то запускаем.
-    if (this.status.isPlaying()) {
-      this.stop();
-    } else if (this.status.isStopped()) {
-      this.play();
-    }
-  },
+            var randomX = Math.round(
+                Math.random() * (this.config.getRowsCount() - 1)
+            );
+            var randomY = Math.round(
+                Math.random() * (this.config.getColsCount() - 1)
+            );
+            
+            //console.log("x" + randomX, "y" + randomY);
+            if (cells[`x${randomX}_y${randomY}`].classList.length == 1)
+                return { x: randomX, y: randomY };
+        }
+    },
 
-  /**
-   * Обработчик события нажатия на кнопку "Новая игра".
-   */
-  newGameClickHandler() {
-    // Ставим игру в начальное положение.
-    this.reset();
-  },
+    /**
+     * Обработчик события нажатия на кнопку playButton.
+     */
+    playClickHandler() {
+        // Если сейчас статус игры "играем", то игру останавливаем, если игра остановлена, то запускаем.
+        if (this.status.isPlaying()) {
+            this.stop();
+        } else if (this.status.isStopped()) {
+            this.play();
+        }
+    },
 
-  /**
-   * Обработчик события нажатия кнопки клавиатуры.
-   * @param {KeyboardEvent} event
-   */
-  keyDownHandler(event) {
-    // Если статус игры не "играем", значит обрабатывать ничего не нужно.
-    if (!this.status.isPlaying()) {
-      return;
-    }
-    // Получаем направление змейки, больше мы не обрабатываем других нажатий.
-    const direction = this.getDirectionByCode(event.code);
-    // Змейка не может повернуть на 180 градусов, поэтому делаем проверку, можем ли мы назначить направление.
-    if (this.canSetDirection(direction)) {
-      this.snake.setDirection(direction);
-    }
-  },
+    /**
+     * Обработчик события нажатия на кнопку "Новая игра".
+     */
+    newGameClickHandler() {
+        // Ставим игру в начальное положение.
+        this.reset();
+    },
 
-  /**
-   * Отдает направление змейки в зависимости от переданного кода нажатой клавиши.
-   * @param {string} code Код нажатой клавиши.
-   * @returns {string} Направление змейки.
-   */
-  getDirectionByCode(code) {
-    switch (code) {
-      case "KeyW":
-      case "ArrowUp":
-        return "up";
-      case "KeyD":
-      case "ArrowRight":
-        return "right";
-      case "KeyS":
-      case "ArrowDown":
-        return "down";
-      case "KeyA":
-      case "ArrowLeft":
-        return "left";
-      default:
-        return "";
-    }
-  },
+    /**
+     * Обработчик события нажатия кнопки клавиатуры.
+     * @param {KeyboardEvent} event
+     */
+    keyDownHandler(event) {
+        // Если статус игры не "играем", значит обрабатывать ничего не нужно.
+        if (!this.status.isPlaying()) {
+            return;
+        }
+        // Получаем направление змейки, больше мы не обрабатываем других нажатий.
+        const direction = this.getDirectionByCode(event.code);
+        // Змейка не может повернуть на 180 градусов, поэтому делаем проверку, можем ли мы назначить направление.
+        if (this.canSetDirection(direction)) {
+            this.snake.setDirection(direction);
+        }
+    },
 
-  /**
-   * Определяет можно ли назначить переданное направление змейке.
-   * @param {string} direction Направление, которое проверяем.
-   * @returns {boolean} true, если направление можно назначить змейке, иначе false.
-   */
-  canSetDirection(direction) {},
+    /**
+     * Отдает направление змейки в зависимости от переданного кода нажатой клавиши.
+     * @param {string} code Код нажатой клавиши.
+     * @returns {string} Направление змейки.
+     */
+    getDirectionByCode(code) {
+        switch (code) {
+            case "KeyW":
+            case "ArrowUp":
+                return "up";
+            case "KeyD":
+            case "ArrowRight":
+                return "right";
+            case "KeyS":
+            case "ArrowDown":
+                return "down";
+            case "KeyA":
+            case "ArrowLeft":
+                return "left";
+            default:
+                return "";
+        }
+    },
 
-  /**
-   * Проверяем произошла ли победа, судим по очкам игрока (длине змейки).
-   * @returns {boolean} true, если игрок выиграл игру, иначе false.
-   */
-  isGameWon() {},
+    // Дописать
+    /**
+     * Определяет можно ли назначить переданное направление змейке.
+     * @param {string} direction Направление, которое проверяем.
+     * @returns {boolean} true, если направление можно назначить змейке, иначе false.
+     */
+    canSetDirection(direction) {
+        // Если новое направление такое же, как предыдущее, то ничего не делаем
+        if(direction == this.snake.lastStepDirection)
+            return true; 
+        
+        // Если длина змейки = 0, то можно двигаться в любом направлении 
+        if(this.snake.bodyLength == 0) {
+            this.snake.lastStepDirection = direction;
+            return true; 
+        }
+          
+        if ((this.snake.lastStepDirection === "up" && direction === "down") ||
+            (this.snake.lastStepDirection === "down" && direction === "up"))
+            return false;
+        else if ((this.snake.lastStepDirection === "left" && direction === "right") || 
+            (this.snake.lastStepDirection === "right" && direction === "left"))
+            return false;
+    
+        this.snake.lastStepDirection = direction;
+        return true;
+    },
 
-  /**
-   * Проверяет возможен ли следующий шаг.
-   * @returns {boolean} true если следующий шаг змейки возможен, false если шаг не может быть совершен.
-   */
-  canMakeStep() {},
+    /**
+     * Проверяем произошла ли победа, судим по очкам игрока (длине змейки).
+     * @returns {boolean} true, если игрок выиграл игру, иначе false.
+     */
+    isGameWon() {
+        return this.config.getWinFoodCount() === this.snake.bodyLength;
+    },
+
+    // Дописать 
+    /**
+     * Проверяет возможен ли следующий шаг.
+     * @returns {boolean} true если следующий шаг змейки возможен, false если шаг не может быть совершен.
+     */
+    canMakeStep() {
+        const newHeadPoint = this.snake.getNextStepHeadPoint();
+        return !this.map.cells[`x${newHeadPoint.x}_y${newHeadPoint.y}`].classList.contains('snakeBody');
+    },
 };
 
 // При загрузке страницы инициализируем игру.
-window.onload = game.init();
+window.onload = game.init(settings);
