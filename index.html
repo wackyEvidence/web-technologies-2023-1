@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodo Pizza Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <section class="pizza-selection">
+            <article id="pepperoni" class="pizza-type" data-selected="true"
+                onclick="pizzaTypeChanged('pepperoni', this)">
+                <img src="/img/pepperoni_366x366.webp" alt="Пицца Пепперони" width="196.74" height="196.74">
+                <p class="pizza-name">Пепперони</p>
+            </article>
+
+            <article id="margarita" class="pizza-type" data-selected="false"
+                onclick="pizzaTypeChanged('margarita', this)">
+                <img src="/img/margarita_366x366.webp" alt="Пицца Маргарита" width="196.74" height="196.74">
+                <p class="pizza-name">Маргарита</p>
+            </article>
+
+            <article id="bayern" class="pizza-type" data-selected="false" onclick="pizzaTypeChanged('bayern', this)">
+                <img src="/img/bayern_366x366.webp" alt="Баварская пицца" width="196.74" height="196.74">
+                <p class="pizza-name">Баварская</p>
+            </article>
+        </section>
+
+        <section class="pizza-params">
+            <section class="size-selection">
+                <header>
+                    <h1>Выберите размер</h1>
+                    <img src="/img/info.svg" alt="Дополнительная информация" title="Дополнительная информация"
+                        width="24" height="24" class="icon">
+                </header>
+                <div class="size-options">
+                    <div id="size-slider" class="slider0"></div>
+                    <input type="radio" id="small" name="size" checked>
+                    <label for="small" class="size-label" id="small-label"
+                        onclick="pizzaSizeChanged(setSmallToppingsPrices, 'Small')">Маленькая</label>
+                    <input type="radio" id="big" name="size">
+                    <label for="big" class="size-label" id="big-label"
+                        onclick="pizzaSizeChanged(setBigToppingsPrices, 'Big')">Большая</label>
+                </div>
+
+            </section>
+            <section class="toppings-selection">
+                <h2 class="topping-title">Добавить по вкусу</h2>
+                <button id="cheese-crust-topping" class="topping-type" data-selected="false"
+                    onclick="toppingChanged('cheese-crust', this)">
+                    <img src="/img/cheese-crust.png" alt="Сырный бортик" title="Сырный бортик" width="90" height="90">
+                    <p class="topping-name">Сырный<br> бортик</p>
+                    <span id="cheese-crust-cost" class="money">150₽</span>
+                </button>
+                <button id="mocarella-topping" class="topping-type" data-selected="false"
+                    onclick="toppingChanged('mocarella', this)">
+                    <img src="/img/mocarella.png" alt="Сливочная моцарелла" title="Сливочная моцарелла" width="90"
+                        height="90">
+                    <p class="topping-name">Сливочная<br> моцарелла</p>
+                    <span id="mocarella-topping-cost" class="money">50₽</span>
+                </button>
+                <button id="chedder-parmizan-topping" class="topping-type" data-selected="false"
+                    onclick="toppingChanged('chedder-parmizan', this)">
+                    <img src="/img/chedder-parmizan.png" alt="Чеддер и пармезан" title="Чеддер и пармезан" width="90"
+                        height="90">
+                    <p class="topping-name">Чеддер и<br> пармезан</p>
+                    <span id="chedder-parmizan-topping-cost" class="money">150₽</span>
+                </button>
+            </section>
+            <button id="add-to-cart-button" class="cart-button">Добавить в корзину за<br>900Р (500 кКал)</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
