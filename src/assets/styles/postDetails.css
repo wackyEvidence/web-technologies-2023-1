@@ -1,0 +1,14 @@
+body {
+    background-color: aliceblue;
+    font-size: 1.5rem;
+}
+
+.post-details {
+    width: 80%;
+    margin: auto;
+}
+
+.post-header {
+    border-bottom: 2px solid black;
+}
+
