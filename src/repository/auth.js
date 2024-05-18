@@ -5,14 +5,14 @@ const AuthRepository = {
         return await api('/me');
     },
 
-    async reg (values) {
+    async reg(values) {
         return await api('/registration', {
             method: 'POST',
             body: JSON.stringify(values)
         });
     },
 
-    async login (values) {
+    async login(values) {
         return await api('/login', {
             method: 'POST',
             body: JSON.stringify(values)

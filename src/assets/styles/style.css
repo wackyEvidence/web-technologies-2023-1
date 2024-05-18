@@ -6,3 +6,44 @@
 @import "./form.css";
 @import "./text-field.css";
 @import "./button.css";
+
+.add-todo { 
+    margin: 15px auto;
+    display: block;
+}
+
+.modal { 
+    margin: auto;
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+}
+
+form { 
+    padding: 2rem;
+}
+
+.modal-content { 
+    border: 2px black solid;
+    border-radius: 10px;
+}
+
+li { 
+    display: flex;
+    justify-content: space-around;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+}

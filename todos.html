@@ -1,34 +1,81 @@
 <!doctype html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./src/assets/styles/style.css">
+    <script defer src="src/pages/todos.js" type="module"></script>
 </head>
+
 <body>
-<header class="header">
-    <nav class="nav">
-        <a href="/index.html">index</a>
-        <a href="/user.html">user</a>
-        <a href="/logout.html">logout</a>
-    </nav>
-</header>
+    <header class="header">
+        <nav class="nav">
+            <a href="/index.html">index</a>
+            <a href="/user.html">user</a>
+            <a href="/logout.html">logout</a>
+        </nav>
+    </header>
 
-<main class="main">
+    <main class="main">
+        <button id="add-todo" class="add-todo">Добавить</button>
+        <div class="todo-container">
+            <table id="task-table">
+                <thead>
+                    <th>id</th>
+                    <th>Наименование задачи</th>
+                    <th>Готовность</th>
+                    <th>Действия</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <ul id="task-list">
 
-</main>
+            </ul>
+        </div>
 
-<div class="loader-wrapper" data-loading>
-    <img
-            src="./src/assets/icons/loader.svg"
-            alt=""
-            class="loader"
-    >
-</div>
+        <div id="add-todo-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span id="close-add-todo" style="float: right; padding: 10px; cursor: pointer;">X</span>
+                <form id="add-todo-form" action="post">
+                    <legend>Создание задачи</legend>
+                    <br>
+                    <label for="todo-name-add">Имя:</label>
+                    <input type="text" name="name" id="todo-name-add">
+                    <br><br>
+                    <!--<label for="is-complete-add">Завершено:</label>
+                    <input type="checkbox" name="is-complete" id="is-complete-add">-->
+                    <button id="submit-add" type="submit" style="cursor: pointer;">OK</button>
+                </form>
+            </div>
+        </div>
 
-<script src="src/pages/todos.js" type="module"></script>
+        <div id="edit-todo-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span id="close-edit-todo" style="float: right; padding: 10px; cursor: pointer;">X</span>
+                <form id="edit-todo-form" action="put">
+                    <br>
+                    <legend>Изменение задачи</legend>
+                    <br>
+                    <label for="todo-name-edit">Имя:</label>
+                    <input type="text" name="name" id="todo-name-edit" disabled>
+                    <br><br>
+                    <label for="is-complete-edit">Завершено:</label>
+                    <input type="checkbox" name="is-complete" id="is-complete-edit">
+                    <br><br>
+                    <!--<button id="submit-edit" type="submit" style="cursor: pointer;">OK</button>-->
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div class="loader-wrapper" data-loading>
+        <img src="./src/assets/icons/loader.svg" alt="" class="loader">
+    </div>
 </body>
+
 </html>
