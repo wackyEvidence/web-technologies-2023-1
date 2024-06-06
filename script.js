@@ -1,3 +1,12 @@
+const sizeSlider = document.getElementById("size-slider");
+const smallSizeLabel = document.getElementById("small-label");
+const bigSizeLabel = document.getElementById("big-label");
+const addToCartButton = document.getElementById("add-to-cart");
+
+const cheeseCrustCost = document.getElementById("cheese-crust-cost");
+const mocarellaCost = document.getElementById("mocarella-topping-cost");
+const cheddarParmezanCost = document.getElementById("chedder-parmizan-topping-cost");
+
 class PizzaType {
     static Margarita = {
         name: "Маргарита",
@@ -11,8 +20,8 @@ class PizzaType {
         calories: 400
     }
 
-    static Bavarian = {
-        name: "Баварская",
+    static ChickenBarbeku = {
+        name: "Цыпленок барбекю",
         price: 700,
         calories: 450
     }
@@ -89,6 +98,27 @@ class Pizza {
         this.#toppings = toppings;
     }
 
+    get type() {
+        return this.#type;
+    }
+
+    set type(newType) {
+        this.#type = newType;
+    }
+
+    get size() {
+        return this.#size;
+    }
+
+    set size(newSize) {
+        this.#size = newSize;
+    }
+
+    get toppings() {
+        return this.#toppings;
+    }
+
+
     addTopping(topping) {
         if(this.#toppings.includes(topping))
                 throw new Error("Такой доп. ингредиент уже добавлен!");
@@ -127,21 +157,54 @@ class Pizza {
     }
 }
 
-let pizza = new Pizza(PizzaType.Margarita, PizzaSize.Small, []);
+const currentPizza = new Pizza(PizzaType.Margarita, PizzaSize.Small, []);
+let selectedPizzaType = document.getElementById("Margarita");
+selectedPizzaType.setAttribute("data-selected", "true");
+updateCartButtonText();
+changeToppingPrices();
 
-pizza.addTopping(PizzaToppings.CheeseBoard);
+function changeToppingPrices() {
+    cheeseCrustCost.textContent = PizzaToppings.CheeseBoard.size[currentPizza.size.id].price + "₽";
+    mocarellaCost.textContent = PizzaToppings.CreamyMozzarella.size[currentPizza.size.id].price + "₽";
+    cheddarParmezanCost.textContent = PizzaToppings.CheddarAndParmesan.size[currentPizza.size.id].price + "₽";
+}
 
-pizza.addTopping(PizzaToppings.CheddarAndParmesan);
+function updateCartButtonText() {
+    addToCartButton.innerHTML = `Добавить в корзину за<br>${currentPizza.calculatePrice()}₽ (${currentPizza.calculateCalories()} кКалл)`;
+}
 
-console.log(pizza.calculatePrice());
+function pizzaTypeChanged(value, object) {
+    selectedPizzaType.setAttribute("data-selected", "false");
+    object.setAttribute("data-selected", "true");
+    currentPizza.type = value;
+    selectedPizzaType = object;
 
-console.log(pizza.calculateCalories());
+    updateCartButtonText();
+}
 
-console.log(pizza.getStuffing());
+function pizzaSizeChanged(size) {
+    if (size === "Big") {
+        sizeSlider.className = "slider100";
+        currentPizza.size = PizzaSize.Big;
+    }
+    else if (size === "Small") {
+        sizeSlider.className = "slider0";
+        currentPizza.size = PizzaSize.Small;
+    }
 
-console.log(pizza.getSize());
+    changeToppingPrices();
+    updateCartButtonText();
+}
 
-let arr = pizza.getToppings();
-arr.forEach(element => {
-    console.log(element);
-});
+function toppingChanged(value, object) {
+    if (object.getAttribute('data-selected') === 'true') {
+        object.setAttribute('data-selected', 'false');
+        currentPizza.removeTopping(value);
+    }
+    else { 
+        object.setAttribute('data-selected', 'true');
+        currentPizza.addTopping(value);
+    }
+
+    updateCartButtonText();
+}

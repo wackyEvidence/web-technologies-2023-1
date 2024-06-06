@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>DodoPizza</title>
+</head>
+<body>
+    <main>
+        <div class="pizza-selection">
+            <div id="Margarita" class="pizza-type" data-selected="false" 
+                onclick="pizzaTypeChanged(PizzaType.Margarita, this)">
+                <img src="img/margarita.jpg" alt="Маргарита">
+                <span class="pizza-name">Маргарита</span>
+            </div>
+            <div id="Pepperoni" class="pizza-type" data-selected="false" 
+                onclick="pizzaTypeChanged(PizzaType.Pepperoni, this)">
+                <img src="img/peperoni.jpg" alt="Пепперони">
+                <span class="pizza-name">Пепперони</span>
+            </div>
+            <div id="Chicken-barbeku" class="pizza-type" data-selected="false" 
+                onclick="pizzaTypeChanged(PizzaType.ChickenBarbeku, this)">
+                <img src="img/chicken-barbeku.jpg" alt="Цыпленок барбекю">
+                <span class="pizza-name">Цыпленок барбекю</span>
+            </div>
+        </div>
+        <div class="pizza-parameters">
+            <div class="size-selection">
+                <div class="header-size-selection">
+                    <h3>Выберите размер</h3>
+                    <img src="img/info.svg" alt="Дополнительная информация">
+                </div>
+                <div class="size-options">
+                    <div id="size-slider" class="slider0"></div>
+                    <input type="radio" id="small" name="size" checked>
+                    <label for="small" class="size-label" id="small-label"
+                        onclick="pizzaSizeChanged('Small')">Маленькая</label>
+                    <input type="radio" id="big" name="size">
+                    <label for="big" class="size-label" id="big-label"
+                        onclick="pizzaSizeChanged('Big')">Большая</label>
+                </div>
+            </div>
+            <div class="toppings-selection">
+                <h2 class="topping-title">Добавить по вкусу</h2>
+                <button id="cheese-crust-topping" class="topping-type" data-selected="false"
+                    onclick="toppingChanged(PizzaToppings.CheeseBoard, this)">
+                    <img src="img/cheese-crust.png" alt="Сырный бортик" title="Сырный бортик" width="90" height="90">
+                    <p class="topping-name">Сырный<br> бортик</p>
+                    <span id="cheese-crust-cost" class="money"></span>
+                </button>
+                <button id="mocarella-topping" class="topping-type" data-selected="false"
+                    onclick="toppingChanged(PizzaToppings.CreamyMozzarella, this)">
+                    <img src="img/mocarella.png" alt="Сливочная моцарелла" title="Сливочная моцарелла" width="90"
+                        height="90">
+                    <p class="topping-name">Сливочная<br> моцарелла</p>
+                    <span id="mocarella-topping-cost" class="money"></span>
+                </button>
+                <button id="chedder-parmizan-topping" class="topping-type" data-selected="false"
+                    onclick="toppingChanged(PizzaToppings.CheddarAndParmesan, this)">
+                    <img src="img/chedder-parmizan.png" alt="Чеддер и пармезан" title="Чеддер и пармезан" width="90"
+                        height="90">
+                    <p class="topping-name">Чеддер и<br> пармезан</p>
+                    <span id="chedder-parmizan-topping-cost" class="money"></span>
+                </button>
+            </div>
+            <button id="add-to-cart" class="add-to-cart"></button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

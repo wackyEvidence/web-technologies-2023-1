@@ -1,0 +1,193 @@
+* { 
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { 
+    width: 95%;
+    margin: auto;
+    background-color: whitesmoke;
+    font-family: Helvetica, sans-serif;
+}
+
+main { 
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+main .pizza-selection { 
+    display: flex;
+    background-color: white;
+    padding: 3rem 1rem 0;
+}
+
+main .pizza-selection .pizza-type { 
+    width: min-content;
+    text-align: center;
+    margin: 0 1rem;
+    cursor: pointer;
+    height: fit-content;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+main .pizza-selection .pizza-type[data-selected="true"] span {
+    color: rgb(255, 105, 0);
+    font-size: 20px;
+}   
+
+main .pizza-selection .pizza-type img { 
+    position: relative; 
+}
+
+main .pizza-selection .pizza-type img:hover{ 
+    top: 1px; 
+}
+
+main .pizza-parameters { 
+    display: flex;
+    flex-direction: column;
+    background-color: hsla(0, 0%, 99%, 0.861);
+    padding: 1.5rem;
+}
+
+main .pizza-parameters .size-selection .header-size-selection { 
+    display: inline-flex;
+    margin-bottom: 15px;
+    font-size: 22px;
+    position: relative;
+}
+
+main .pizza-parameters .size-selection .header-size-selection img {
+    display: inline-block;
+    position: relative;
+    left: 105px;
+}
+
+main .pizza-parameters .size-selection .header-size-selection img:hover {
+    width: 26px;
+    left: 104px;
+}
+
+main .pizza-parameters .size-selection .size-options { 
+    display: flex;
+    border-radius: 99px;
+    background-color: rgb(243, 243, 247);
+    height: 32px;
+    overflow: hidden;
+    position: relative;
+}
+
+main .pizza-parameters .size-selection .slider0 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: calc(50%);
+    transform: translateX(calc(0%));
+    transition: transform 200ms ease-out 0s, width;
+    padding: 2px;
+}
+
+main .pizza-parameters .size-selection .slider100 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: calc(50%);
+    transform: translateX(calc(100%));
+    transition: transform 200ms ease-out 0s, width;
+    padding: 2px;
+}
+
+main .pizza-parameters .size-selection .slider0::before{
+    content: " ";
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(6, 5, 50, 0.19) 0px 6px 20px;
+    border-radius: 99px;
+}
+
+main .pizza-parameters .size-selection .slider100::before {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(6, 5, 50, 0.19) 0px 6px 20px;
+    border-radius: 99px;
+}
+
+main .pizza-parameters .size-selection .size-label { 
+    display: block;
+    flex: 1 1 0%;
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 32px;
+    text-align: center;
+    height: 32px;
+    transition: color 150ms ease 0s;
+}
+
+main .pizza-parameters .size-selection input[type="radio"] {
+    position: absolute;
+    display: none;
+}
+
+main .pizza-parameters .toppings-selection { 
+    margin-top: 20px;
+}
+
+main .pizza-parameters .toppings-selection .topping-type {
+    background-color: white;
+    border: none;
+    box-shadow: rgba(6, 5, 50, 0.12) 0px 4px 20px;
+    border-radius: 12px;
+    transition: box-shadow 150ms ease-out 0s, border;
+    margin: 12px 4px 8px 4px;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+main .pizza-parameters .toppings-selection .topping-type[data-selected="true"] {
+    box-shadow: rgba(6, 5, 50, 0.12) 0px 0px 0px;
+    border: 1px solid rgb(255, 105, 0);
+}
+
+main .pizza-parameters .toppings-selection .topping-title { 
+    font-size: 22px;
+    font-weight: 600;
+}
+
+main .pizza-parameters .toppings-selection .topping-type .topping-name { 
+    font-size: 12px;
+    line-height: 16px;
+    height: 32px;
+    margin-bottom: 5px;
+}
+
+main .pizza-parameters .toppings-selection .topping-type .money {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+main .pizza-parameters .add-to-cart { 
+    color: white;
+    border: none;
+    background-color: rgb(255, 105, 0);
+    border-radius: 99px;
+    line-height: 24px;
+    padding: 10px 0;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+}
